@@ -1,0 +1,16 @@
+
+.main-container {
+  max-width: 1340px;
+}
+
+.header {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.type__switcher__field {
+   height: 20rem;
+
+
+}

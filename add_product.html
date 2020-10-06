@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Product DB</title>
+</head>
+
+<body>
+  <div class="container main-container">
+    <header class="header">
+      <div class="header__name">
+        <h1>Product Add</h1>
+      </div>
+        <!-- ############## Right side of Header ###################### -->
+      <div class="form__delete">
+        <form class="form-inline">
+          <div class="form-group">
+            <button type="button" id="buttonSave" class="btn btn-outline-secondary ">Save</button>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <hr />
+    <!-- ############## MAIN CONTENT ###################### -->
+
+    <div class="main">
+      <div class="row">
+    <div class="col-md-6 col-md-offset-3 ">
+
+      <form>
+        <div class="form-group row">
+          <label for="skuFromField" class="col-sm-2 col-form-label">SKU</label>
+          <div class="col-sm-8 skuFormField">
+
+            <input type="text" class="form-control" maxlength="15" onchange="onChangeMainFields(this)" id="skuFormField" placeholder="SKU">
+
+          </div>
+
+          </div>
+
+        <div class="form-group row">
+          <label for="nameFormField" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-8 nameFormField">
+            <input type="text" class="form-control" maxlength="20"onchange="onChangeMainFields(this)" id="nameFormField" placeholder="Name">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="priceFormField" class="col-sm-2 col-form-label">Price</label>
+          <div class="col-sm-8 priceFormField">
+            <input type="text" class="form-control" maxlength="5" onchange="onChangeMainFields(this)" id="priceFormField" placeholder="Price">
+          </div>
+        </div>
+        <br />
+         <br />
+        <div class="form-group row">
+
+            <label class="col-sm-4 col-form-label h5" for="inlineFormCustomSelect">Type Switcher</label>
+            <div class="col-sm-8">
+              <select class="form-control" id="inlineFormCustomSelect" onchange="typeSwitch(this)">
+                <option selected>Choose...</option>
+                <option value="size">Size</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+          </div>
+        </div>
+        <br />
+         <!-- type Switcher -->
+        <div id="typeSwitcherField">
+
+        </div>
+      </form>
+
+
+
+      <br />
+    <!--
+      <div class="jumbotron type__switcher__field">
+
+        <p class="">Please select <span class="font-weight-bold">Type Switcher</span> to see more fields.</p>
+
+
+      </div>
+
+ -->
+
+
+
+
+  </div>
+  </div>
+    </div>
+  </div>
+
+  <!-- #### JavaScript #### -->
+
+  <!-- My custom JS laibrary -->
+ <script src="js/ablib.js"></script>
+
+  <script src="js/formValidation.js"></script>
+  <script src="js/tsFormChanger.js"></script>
+  <script src="js/formPattern.js"></script>
+
+
+</body>
+
+</html>
