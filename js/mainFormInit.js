@@ -41,7 +41,7 @@ function CreateMainFormFields(param) {
 
           <label class="col-sm-4 col-form-label h5" for="${this.fieldId}">${this.fieldName}</label>
           <div class="col-sm-8">
-            <select class="form-control" id="${this.fieldId}" >
+            <select class="form-control" id="${this.fieldId}" name=${this.fieldName.toLowerCase()} >
               <option value="default" selected>Choose...</option>
             ${options.toString()}
             </select>

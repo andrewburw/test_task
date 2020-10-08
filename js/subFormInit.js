@@ -17,7 +17,7 @@ function CreateTypeSwFields(param) {
                <div class="form-group row">
                  <label for="${this.fieldId}" class="col-sm-2 col-form-label">${this.fieldName}</label>
                  <div class="col-sm-8 ${this.fieldId}">
-                   <input type="number" class="form-control"  min="0" max="5000" id="${this.fieldId}" placeholder="${this.fieldName}">
+                   <input type="number" class="form-control"  min="0" max="5000" id="${this.fieldId}"  name=${this.fieldName.toLowerCase()} placeholder="${this.fieldName}">
                     <small id="${this.fieldId}helpText" class="form-text text-muted">${this.helpText}</small>
                  </div>
                </div>`)
@@ -82,6 +82,17 @@ $('#typeChangeSelect').onChange(function(){
   $('.type__switcher__field').hide();
   $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (remove it)
 
+ errorHandler.sizeFromField = undefined; // this part needs if user change subForm multyply times
+ errorHandler.heightField = undefined;
+ errorHandler.widthField = undefined;
+ errorHandler.lengthField = undefined;
+ errorHandler.weightField = undefined;
+
+   delete errorHandler.sizeFromField; // this part needs if user change subForm multyply times
+   delete errorHandler.heightField;
+   delete errorHandler.widthField;
+   delete errorHandler.lengthField;
+   delete errorHandler.weightField;
 
   let typeVal = $('#typeChangeSelect').val();
 

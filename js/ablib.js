@@ -12,16 +12,16 @@ var $ = (function() {
 
   Constructor.prototype.addClass = function(val) {
 
-    this.elems[0].classList.add(val)
+    this.elems[0] !== undefined ?  this.elems[0].classList.add(val) : '';
   };
   //onchange = handlerFunction;
   Constructor.prototype.onChange = function(callBack) {
 
-    this.elems[0] !== undefined ? this.elems[0].addEventListener('change', callBack) : ''
+    this.elems[0] !== undefined ? this.elems[0].addEventListener('change', callBack) : '';
   };
   Constructor.prototype.removeClass = function(val) {
 
-    this.elems[0].classList.remove(val)
+   this.elems[0] !== undefined ?  this.elems[0].classList.remove(val) : '';
   };
   Constructor.prototype.removeElement = function() {
     this.elems[0] !== undefined ? this.elems[0].remove() : '';
@@ -33,7 +33,9 @@ var $ = (function() {
     }
 
   };
-
+  Constructor.prototype.name = function(){
+      return this.elems[0] !== undefined ?  this.elems[0].name : '';
+  }
   //removeAllChildNodes
   Constructor.prototype.insertChildNode = function(htm) {
 
@@ -45,7 +47,7 @@ var $ = (function() {
   this.elems[0] !== undefined ?  this.elems[0].insertAdjacentHTML(t, htm) : '';
   };
   Constructor.prototype.val = function() {
-    return this.elems[0].value;
+    return this.elems[0] !== undefined ? this.elems[0].value : '';
 
   };
 

@@ -1,4 +1,4 @@
-let errorHandler = {}; // object for errors  (after submit pressed it checks this object if field contains errors)
+let errorHandler = {}; // object for errors  (after submit pressed  checks this object if field contains errors)
 let formValidation = {
   /*
 
@@ -102,8 +102,32 @@ let formValidation = {
 
 $('#buttonSave').onClick(function(event){
 
-
-  if (formValidation.submitErrorsChecker()) {
-       event.preventDefault()
+  // Save button pressed.
+event.preventDefault()
+ if (formValidation.submitErrorsChecker()) {// check if filds has errors
+      return '';
   }
+
+  let allFormFieldID = Object.keys(errorHandler); // get all fields IDS
+  let result = {};                               // data to send.
+   allFormFieldID.forEach(function(value) { // collecting all key -> value pairs with data to send.
+
+     result[$('#' + value).name()] = $('#' + value).val();
+   });
+
+
+  fetch('php/addProduct.php', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(result)
+
+    }).then((response) => response.json())
+    .then((responseData) => {
+
+       console.log(responseData)
+    })
+
+
 })
