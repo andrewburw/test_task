@@ -15,13 +15,14 @@ function CreateMainFormFields(param) {
   this.fieldName = param.fieldName;
   this.fieldOptions = param.fieldOptions;
   this.fieldType = param.fieldType;
+  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to checkthis field before form submit)
   this.crateField = function() {
 
     $("#mainForm").insertHTM('beforeend',`
                <div class="form-group row">
                  <label for="${this.fieldId}" class="col-sm-2 col-form-label">${this.fieldName}</label>
                  <div class="col-sm-8 ${this.fieldId}">
-                   <input type="${this.fieldType}" class="form-control" maxlength="20" id="${this.fieldId}" placeholder="${this.fieldName}">
+                   <input type="${this.fieldType}" class="form-control" maxlength="20" id="${this.fieldId}" name=${this.fieldName.toLowerCase()} placeholder="${this.fieldName}">
 
                  </div>
                </div>`)
@@ -97,7 +98,7 @@ let priceField = new CreateMainFormFields({fieldId: 'priceFormField',fieldName:'
     priceField.crateField();
 
     formValidation.emptyField(priceField);
-    formValidation.valueNotMinus(priceField,[0,400]); // second arg. is range for test.
+    formValidation.valueNotMinus(priceField,[1,400]); // second arg. is range for test.
 
 
 let typeChangeField = new CreateMainFormFields({fieldId: 'typeChangeSelect',fieldName:'Type Switcher',

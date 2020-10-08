@@ -10,6 +10,7 @@ function CreateTypeSwFields(param) {
   this.fieldId = param.fieldId;
   this.fieldName = param.fieldName;
   this.helpText = param.helpText;
+  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to checkthis field before form submit)
   this.crateField = function() {
 
     $("#typeSwitcherField").insertHTM('beforeend',`
@@ -40,13 +41,13 @@ let formTypeChangePatterns ={
 
          },
          size: function(){
-          $('#typeSwitcherField').removeAll(); // delete all Type fiels if it selected before.
+          $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fiels if it selected before.
            let sizeField = new  CreateTypeSwFields({fieldId: 'sizeFromField',fieldName:'Size',helpText:'Please provide DISC size, when type: Size is selected.'});
            sizeField.crateField();
            formValidation.emptyField(sizeField);
          },
          furniture: function(){
-           $('#typeSwitcherField').removeAll();// delete all Type fiels if it selected before.
+           $('#typeSwitcherField').removeAll();// delete all "Type Switcher" fiels if it selected before.
            let heightField = new  CreateTypeSwFields({fieldId: 'heightFromField',fieldName:'Height',helpText:''});
               heightField.crateField();
               formValidation.emptyField(heightField);
@@ -62,7 +63,7 @@ let formTypeChangePatterns ={
               formValidation.emptyField(lengthField);
          },
          weight: function(){
-          $('#typeSwitcherField').removeAll(); // delete all Type fiels if it selected before.
+          $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fiels if it selected before.
            let weightField = new  CreateTypeSwFields({fieldId: 'weightFromField',fieldName:'Weight',helpText:'Please provide weight, when type: Weight is selected.'});
              weightField.crateField();
              formValidation.emptyField(weightField);
@@ -76,17 +77,21 @@ let formTypeChangePatterns ={
 }
 
 
-
-
 $('#typeChangeSelect').onChange(function(){
+  // typeSwitcher action function
   $('.type__switcher__field').hide();
+  $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (remove it)
+
 
   let typeVal = $('#typeChangeSelect').val();
 
-formTypeChangePatterns[typeVal]();
+  if (typeVal === 'default') { // for object errorHandler.
+    errorHandler['typeChangeSelect'] = true;
+  } else {
+    errorHandler['typeChangeSelect'] = false;
+  }
 
-
-
+  formTypeChangePatterns[typeVal](); // init subform fields.
 
 
 })

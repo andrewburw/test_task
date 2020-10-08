@@ -42,7 +42,7 @@ var $ = (function() {
 
   Constructor.prototype.insertHTM = function(t, htm) {
 
-    this.elems[0].insertAdjacentHTML(t, htm)
+  this.elems[0] !== undefined ?  this.elems[0].insertAdjacentHTML(t, htm) : '';
   };
   Constructor.prototype.val = function() {
     return this.elems[0].value;

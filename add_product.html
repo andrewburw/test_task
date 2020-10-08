@@ -20,11 +20,11 @@
       </div>
         <!-- ############## Right side of Header ###################### -->
       <div class="form__delete">
-        <form class="form-inline">
+
           <div class="form-group">
-            <button type="button" id="buttonSave" class="btn btn-outline-secondary ">Save</button>
+            <button  id="buttonSave" type="submit" form="submitForm"  class="btn btn-outline-secondary ">Save</button>
           </div>
-        </form>
+
       </div>
     </header>
 
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3 ">
 
-        <form>
+        <form id="submitForm"  method="POST" action="http://test.io/php/addProduct.php">
           <div id="mainForm">
 
           </div>
