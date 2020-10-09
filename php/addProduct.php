@@ -1,20 +1,32 @@
 <?php
 
-//require_once 'include/db_connect.php';
+require_once 'include/db_connect.php';
  header('Content-Type: application/json');
-/*
-class RegisterUser {
-    private $firstName;
-    private $lastName;
-    private $emailAddress;
 
-    function __construct() {
-        $this->firstName = isset($_POST['first_name']) ? $_POST['first_name'] : null;
-        $this->lastName = isset($_POST['last_name']) ? $_POST['last_name'] : null;
-        $this->emailAddress = isset($_POST['email_address']) ? $_POST['email_address'] : null;
+class MainFormData {
+    private $sku;
+    private $name;
+    private $price;
+
+    function decoder(){
+      $content = trim(file_get_contents("php://input"));
+       return $decoded = json_decode($content, true);
+
+
     }
 
-    function start() {
+
+    function __construct() {
+        $data =  $this-> decoder();
+
+        $this->sku = $data['sku'];
+        $this->name = $data['name'];
+        $this->price = $data['price'];
+
+
+    }
+
+  /*    function start() {
         if (empty($this->firstName) || empty($this->lastName) || empty($this->emailAddress)) {
             throw new Exception("Empty Post not allowed");
         }
@@ -24,14 +36,9 @@ class RegisterUser {
             // Do some stuiff
             echo " Registration Done";
         }
-    }
+    }  */
 }
-
-$register = new RegisterUser();
-if(!empty($_POST))
-{
-    $register->start();
-} */
-
-
-echo file_get_contents("php://input");
+$db = new Db($config['db']['server'], $config['db']['username'],  $config['db']['password'], $config['db']['dbname']);
+//$addNewProduct = new MainFormData();
+//$addNewProduc->test();
+echo $db;

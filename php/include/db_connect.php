@@ -2,18 +2,17 @@
 
   include 'config.php';
 
-  $connect = mysqli_connect(
-      $config['db']['server'],
-      $config['db']['username'],
-      $config['db']['password'],
-      $config['db']['dbname']
-    );
 
-    if ($connect == false) {
-      echo 'Error in connection to db.<br>';
-      echo mysqli_connect_error();
+
+class Db  {
+    protected $connection;
+    protected $query;
+   public function __construct($dbhost = 'localhost', $dbuser = 'root', $dbpass = '', $dbname = '', $charset = 'utf8') {
+     $this->connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+     if ($this->connection->connect_error) {
+       $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
       exit();
+    } 
 
-    } else {
-      echo 'ok';
-    }
+   }
+}

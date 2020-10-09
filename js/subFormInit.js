@@ -1,16 +1,14 @@
 /*
   #####################################################
-               Type Switcher Form Script.
+               Type Switcher Subform Script.
   #####################################################
-  Idea is to take JQUERY concept and impliment my own framework for faster developing
-  and less code.
 
 */
 function CreateTypeSwFields(param) {
   this.fieldId = param.fieldId;
   this.fieldName = param.fieldName;
   this.helpText = param.helpText;
-  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to checkthis field before form submit)
+  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to check this field before form submit)
   this.crateField = function() {
 
     $("#typeSwitcherField").insertHTM('beforeend',`
@@ -33,7 +31,7 @@ function CreateTypeSwFields(param) {
 
 
 
-let formTypeChangePatterns ={
+let formTypeChangePatterns = {
          default: function(){
            // if accedenly presed default in "Type Switcher"
            $('.type__switcher__field').show(); // show info panel "Please select Type Switcher to see more fields."
@@ -78,7 +76,7 @@ let formTypeChangePatterns ={
 
 
 $('#typeChangeSelect').onChange(function(){
-  // typeSwitcher action function
+  // typeSwitcher select action function
   $('.type__switcher__field').hide();
   $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (remove it)
 

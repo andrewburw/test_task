@@ -3,7 +3,7 @@ let formValidation = {
   /*
 
    This object contains field tests.Each field can be tested by all this test.
-   You can simply add new tests.For each field you want
+   You can simply add new tests.For each field you want.
 
     */
 
@@ -114,7 +114,7 @@ event.preventDefault()
 
      result[$('#' + value).name()] = $('#' + value).val();
    });
-
+   console.log(result)
 
   fetch('php/addProduct.php', {
       method: 'post',
