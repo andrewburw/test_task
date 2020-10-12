@@ -103,6 +103,7 @@ let formValidation = {
 $('#buttonSave').onClick(function(event){
 
   // Save button pressed.
+  console.log(errorHandler)
 event.preventDefault()
  if (formValidation.submitErrorsChecker()) {// check if filds has errors
       return '';
@@ -114,7 +115,7 @@ event.preventDefault()
 
      result[$('#' + value).name()] = $('#' + value).val();
    });
-   console.log(result)
+   console.log(errorHandler)
 
   fetch('php/addProduct.php', {
       method: 'post',

@@ -81,16 +81,16 @@ $('#typeChangeSelect').onChange(function(){
   $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (remove it)
 
  errorHandler.sizeFromField = undefined; // this part needs if user change subForm multyply times
- errorHandler.heightField = undefined;
- errorHandler.widthField = undefined;
- errorHandler.lengthField = undefined;
- errorHandler.weightField = undefined;
+ errorHandler.heightFromField = undefined;
+ errorHandler.widthFromField = undefined;
+ errorHandler.lengthFromField = undefined;
+ errorHandler.weightFromField = undefined;
 
    delete errorHandler.sizeFromField; // this part needs if user change subForm multyply times
-   delete errorHandler.heightField;
-   delete errorHandler.widthField;
-   delete errorHandler.lengthField;
-   delete errorHandler.weightField;
+   delete errorHandler.heightFromField;
+   delete errorHandler.widthFromField;
+   delete errorHandler.lengthFromField;
+   delete errorHandler.weightFromField;
 
   let typeVal = $('#typeChangeSelect').val();
 

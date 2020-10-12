@@ -1,6 +1,8 @@
 <?php
-
+require_once 'include/config.php';
 require_once 'include/db_connect.php';
+
+
  header('Content-Type: application/json');
 
 class MainFormData {
@@ -41,4 +43,6 @@ class MainFormData {
 $db = new Db($config['db']['server'], $config['db']['username'],  $config['db']['password'], $config['db']['dbname']);
 //$addNewProduct = new MainFormData();
 //$addNewProduc->test();
-echo $db;
+$db->postData();
+//echo $db;
+//echo '{"test":"test"}';
