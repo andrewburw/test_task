@@ -103,7 +103,7 @@ let formValidation = {
 $('#buttonSave').onClick(function(event){
 
   // Save button pressed.
-  console.log(errorHandler)
+
 event.preventDefault()
  if (formValidation.submitErrorsChecker()) {// check if filds has errors
       return '';
@@ -115,7 +115,7 @@ event.preventDefault()
 
      result[$('#' + value).name()] = $('#' + value).val();
    });
-   console.log(errorHandler)
+
 
   fetch('php/addProduct.php', {
       method: 'post',
@@ -125,9 +125,20 @@ event.preventDefault()
       body: JSON.stringify(result)
 
     }).then((response) => response.json())
-    .then((responseData) => {
+    .then((data) => {
+        $('#fromResultMsg').removeAll();
+      console.log(data)
+       if (data.status === 'error') {
+         let msge =  new CreateErroMSG({msg: data.error});
+          msge.crateErrorMsg();
+       } else {
+         let msge =  new CreateErroMSG({msg: 'Data Sended.Page reloading...'});
+          msge.crateSuccessMsg();
+        //  setTimeout(function(){ window.location.reload() }, 1000);
 
-       console.log(responseData)
+        //  document.getElementById("buttonSave").disabled = true; // protect button from multyply button press
+       }
+
     })
 
 
