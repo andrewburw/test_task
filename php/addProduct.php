@@ -40,7 +40,7 @@ class SubFormData {
     private $length;
     private $weight;
 
-    
+
     function decoder(){
       $content = trim(file_get_contents("php://input"));
        return $decoded = json_decode($content, true);
@@ -76,6 +76,6 @@ $recivedData_subForm =  $addNewProduct_subForm->getValues();
 
 
  //$tableColumns = 'sku,name,price,size,height,width,length';
- $tableColumns = 'sku,name,price,size,height,width,length';;
+ $tableColumns = 'sku,name,price,size,height,width,length,weight';
 
 $db->postData($tableColumns ,$recivedData,$recivedData_subForm );

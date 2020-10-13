@@ -22,26 +22,33 @@ class Db  {
 
 
    public function postData($params,$formData,$subFormData){
-      //  print_r(array_values($formData));
-
-
-    // echo  implode(',', $formData);
+      // ----- TABLE VALUES ------
+      $filterNull = array_filter($subFormData, function($value) { return !is_null($value) && $value !== ''; });
       $imploded_form = implode("','",$formData);
-      $imploded_subForm = implode("','",$subFormData);
-     $sqlQuery = "INSERT INTO products ($params) VALUES ('$imploded_form','$imploded_subForm');";
+      $imploded_subForm = implode("','",   $filterNull);
+
+     // ----- TABLE COLUMNS ------
+      $tableColums = implode(",", array_keys($formData));
+      $subTableColums = implode(",", array_keys($test));
+
+
+
+     $sqlQuery = "INSERT INTO products ($tableColums , $subTableColums) VALUES ('$imploded_form',' $imploded_subForm');";
 
 
       if ($this->connection->query($sqlQuery) === TRUE) {
 
-         echo   json_encode( array("status" => 'OK'));
+         echo  json_encode( array("status" => 'OK'));
 
       } else {
 
          $errorN = mysqli_errno( $this->connection);
              if (array_key_exists( $errorN , $this->sqlErrors )) {
               echo  json_encode( array("status" => 'error',"error" => $this->sqlErrors[$errorN] ));
+
             } else {
-              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error,'sql'=> $sqlQuery ));
+              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error,'sql'=>  $sqlQuery ));
+                
 
           }
       }
