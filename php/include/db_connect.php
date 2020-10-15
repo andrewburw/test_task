@@ -21,7 +21,7 @@ class Db  {
    );
 
 
-   public function postData($params,$formData,$subFormData){
+   public function postData($formData,$subFormData){
       // ----- TABLE VALUES ------
       $filterNull = array_filter($subFormData, function($value) { return !is_null($value) && $value !== ''; });
       $imploded_form = implode("','",$formData);
@@ -47,8 +47,8 @@ class Db  {
               echo  json_encode( array("status" => 'error',"error" => $this->sqlErrors[$errorN] ));
 
             } else {
-              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error,'sql'=>  $sqlQuery ));
-                
+              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error ));
+
 
           }
       }
@@ -56,5 +56,43 @@ class Db  {
           $this->connection->close();
 
   }
+
+  public function showData(){
+     // -----  SHOW PRODUCTS ------
+
+    
+    $sqlQuery = "SELECT * FROM products;";
+
+    $result = $this->connection->query($sqlQuery);
+
+
+
+     if ( $result) {
+       $resultArr = array();
+
+      while ($row = $result -> fetch_assoc()) {
+          $resultArr[] = $row;
+      }
+        return json_encode($resultArr);
+
+
+     } else {
+
+        $errorN = mysqli_errno( $this->connection);
+            if (array_key_exists( $errorN , $this->sqlErrors )) {
+             echo  json_encode( array("status" => 'error',"error" => $this->sqlErrors[$errorN] ));
+
+           } else {
+             echo   json_encode( array("status" => 'error',"error" => $this->connection-> error ));
+
+
+         }
+     }
+
+
+
+         $this->connection->close();
+
+ }
 
 }

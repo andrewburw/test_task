@@ -75,7 +75,4 @@ $recivedData =  $addNewProduct->getValues();
 $recivedData_subForm =  $addNewProduct_subForm->getValues();
 
 
- //$tableColumns = 'sku,name,price,size,height,width,length';
- $tableColumns = 'sku,name,price,size,height,width,length,weight';
-
-$db->postData($tableColumns ,$recivedData,$recivedData_subForm );
+$db->postData($recivedData,$recivedData_subForm );
