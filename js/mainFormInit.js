@@ -4,10 +4,7 @@
   #####################################################
   Idea is to take JQUERY concept and impliment my own framework for faster developing
   and less code.
-  * function "onChangeMainFields" - Take data from field.
-  * function "checkFieldData" - Tests for valid data.
-  * function "addFeedbackToField" - Add Errors to field by adding HTML to field.
-  *
+
 */
 
 function CreateMainFormFields(param) {
@@ -22,14 +19,14 @@ function CreateMainFormFields(param) {
                <div class="form-group row">
                  <label for="${this.fieldId}" class="col-sm-2 col-form-label">${this.fieldName}</label>
                  <div class="col-sm-8 ${this.fieldId}">
-                   <input type="${this.fieldType}" class="form-control" maxlength="20" id="${this.fieldId}" name=${this.fieldName.toLowerCase()} placeholder="${this.fieldName}">
+                   <input type="${this.fieldType}" class="form-control" maxlength="15" id="${this.fieldId}" name=${this.fieldName.toLowerCase()} placeholder="${this.fieldName}">
 
                  </div>
                </div>`)
 
   };
 
-  this.crateOptionField = function() {
+  this.crateOptionField = function() { // select field create
    let options =   this.fieldOptions.map((val)=>{
 
        return `<option value="${val.toLowerCase()}">${val}</option>`;
@@ -83,25 +80,31 @@ function CreateMainFormFields(param) {
 
 
 
-let skuField = new CreateMainFormFields({fieldId: 'skuFromField',fieldName:'SKU',fieldType:'text'});
+let skuField = new CreateMainFormFields({fieldId: 'skuFromField',
+                                        fieldName:'SKU',
+                                        fieldType:'text'});
     skuField.crateField();
     formValidation.emptyField(skuField);
 
 
 
-let nameField = new CreateMainFormFields({fieldId: 'nameFromField',fieldName:'Name',fieldType:'text'});
+let nameField = new CreateMainFormFields({fieldId: 'nameFromField',
+                                          fieldName:'Name',
+                                          fieldType:'text'});
     nameField.crateField();
     formValidation.emptyField(nameField);
 
 
-let priceField = new CreateMainFormFields({fieldId: 'priceFormField',fieldName:'Price',fieldType:'number'});
+let priceField = new CreateMainFormFields({fieldId: 'priceFormField',
+                                           fieldName:'Price',
+                                           fieldType:'number'});
     priceField.crateField();
 
     formValidation.emptyField(priceField);
-    formValidation.valueNotMinus(priceField,[1,400]); // second arg. is range for test.
+    formValidation.valueNotMinus(priceField,[1,400]); //  accepted range.
 
 
-let typeChangeField = new CreateMainFormFields({fieldId: 'typeChangeSelect',fieldName:'Type Switcher',
-
-fieldOptions: ['Size','Furniture','Weight']});
+let typeChangeField = new CreateMainFormFields({fieldId: 'typeChangeSelect',
+                                                fieldName:'Type Switcher',
+                                                fieldOptions: ['Size','Furniture','Weight']});
     typeChangeField.crateOptionField();

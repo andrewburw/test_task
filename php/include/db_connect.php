@@ -23,13 +23,15 @@ class Db  {
 
    public function postData($formData,$subFormData){
       // ----- TABLE VALUES ------
-      $filterNull = array_filter($subFormData, function($value) { return !is_null($value) && $value !== ''; });
+      // $filterNullValues = delete all null fields
+      $filterNullValues = array_filter($subFormData, function($value) { return !is_null($value) && $value !== ''; });
+
       $imploded_form = implode("','",$formData);
-      $imploded_subForm = implode("','",   $filterNull);
+      $imploded_subForm = implode("','",   $filterNullValues);
 
      // ----- TABLE COLUMNS ------
       $tableColums = implode(",", array_keys($formData));
-      $subTableColums = implode(",", array_keys($test));
+      $subTableColums = implode(",", array_keys(  $filterNullValues));
 
 
 
@@ -47,7 +49,7 @@ class Db  {
               echo  json_encode( array("status" => 'error',"error" => $this->sqlErrors[$errorN] ));
 
             } else {
-              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error ));
+              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error));
 
 
           }
@@ -60,7 +62,7 @@ class Db  {
   public function showData(){
      // -----  SHOW PRODUCTS ------
 
-    
+
     $sqlQuery = "SELECT * FROM products;";
 
     $result = $this->connection->query($sqlQuery);
@@ -94,5 +96,33 @@ class Db  {
          $this->connection->close();
 
  }
+
+   public function deleteData($data){
+
+        $ids =  implode(",",$data);
+
+      $sqlQuery = "DELETE from `products` WHERE `id` IN ($ids);";
+
+      if ($this->connection->query($sqlQuery) === TRUE) {
+
+         echo  json_encode( array("status" => 'OK'));
+
+      } else {
+
+         $errorN = mysqli_errno( $this->connection);
+             if (array_key_exists( $errorN , $this->sqlErrors )) {
+              echo  json_encode( array("status" => 'error',"error" => $this->sqlErrors[$errorN] ));
+
+            } else {
+              echo   json_encode( array("status" => 'error',"error" => $this->connection-> error ));
+
+
+          }
+      }
+
+          $this->connection->close();
+
+
+   }
 
 }

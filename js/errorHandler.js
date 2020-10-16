@@ -1,6 +1,13 @@
+/*
+  #############################################################
+                     ERROR HANDLER
+  ############################################################
+  This script is error/success box. (IF errors recived from server).
+*/
+
 function CreateErroMSG(param) {
   this.msg = param.msg;
- 
+
   this.crateErrorMsg = function() {
 
     $("#fromResultMsg").insertHTM('beforeend',`

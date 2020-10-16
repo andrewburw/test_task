@@ -1,8 +1,15 @@
-let errorHandler = {}; // object for errors  (after submit pressed  checks this object if field contains errors)
+/*
+  #############################################################
+            Form Validation and Data send to server script
+  ############################################################
+
+*/
+
+let errorHandler = {}; // object for errors  (after submit pressed,  checks this object if field contains errors)
 let formValidation = {
   /*
 
-   This object contains field tests.Each field can be tested by all this test.
+   This object contains field tests.Each field can be tested by all this functions.
    You can simply add new tests.For each field you want.
 
     */
@@ -11,7 +18,6 @@ let formValidation = {
          $('#' + obj.fieldId).onChange(function() {
 
              let value = $('#' + obj.fieldId).val();
-
 
            if (value.length === 0) {
 
@@ -44,7 +50,7 @@ let formValidation = {
    },
    submitErrorsChecker: function() {
 
-
+       // this test for submit button
      let found = Object.keys(errorHandler).filter(function(key) {
        return errorHandler[key] === true;
      });
@@ -59,7 +65,7 @@ let formValidation = {
          $('#' + currentValue + 'InvalidFeed').removeElement();
          $('.' + currentValue).insertHTM('beforeend','<div id="' + currentValue +
 
-           'InvalidFeed" class="invalid-feedback">please fill this field.</div>');
+           'InvalidFeed" class="invalid-feedback">Please fill this field.</div>');
 
       });
 
@@ -80,19 +86,19 @@ let formValidation = {
       if (val) {
         if (obj.hasOwnProperty('addErrorMsg')) {
           obj.addErrorMsg(msg);
-          errorHandler[obj.fieldId] = true; // set field has errors.
+          errorHandler[obj.fieldId] = true; // set field "has errors".
         } else {
-          errorHandler[obj.fieldId] = true; // set field has errors.
+          errorHandler[obj.fieldId] = true; // set field "has errors".
           skuField.addErrorMsg.call(obj,msg); // Inheritance "show error msg" from mainForm methods.
         }
 
       } else {
         if (obj.hasOwnProperty('removeErrorAddSuccesMsg')) {
           obj.removeErrorAddSuccesMsg();
-          errorHandler[obj.fieldId] = false;  // set field has't errors.
+          errorHandler[obj.fieldId] = false;  // set field "no errors".
         } else {
           skuField.removeErrorAddSuccesMsg.call(obj); // Inheritance "show error msg" from mainForm methods.
-          errorHandler[obj.fieldId] = false; // set field has't errors.
+          errorHandler[obj.fieldId] = false; // set field "no errors".
         }
       }
 
@@ -102,7 +108,7 @@ let formValidation = {
 
 $('#buttonSave').onClick(function(event){
 
-  // Save button pressed.
+  // SAVE button pressed.
 
 event.preventDefault()
  if (formValidation.submitErrorsChecker()) {// check if filds has errors
@@ -116,7 +122,7 @@ event.preventDefault()
      result[$('#' + value).name()] = $('#' + value).val();
    });
 
-
+//-----------------------------------------------------
   fetch('php/addProduct.php', {
       method: 'post',
       headers: {
@@ -127,16 +133,16 @@ event.preventDefault()
     }).then((response) => response.json())
     .then((data) => {
         $('#fromResultMsg').removeAll();
-      console.log(data)
+
        if (data.status === 'error') {
          let msge =  new CreateErroMSG({msg: data.error});
           msge.crateErrorMsg();
        } else {
          let msge =  new CreateErroMSG({msg: 'Data Sended.Page reloading...'});
           msge.crateSuccessMsg();
-        //  setTimeout(function(){ window.location.reload() }, 1000);
+          setTimeout(function(){ window.location.reload() }, 1000);
 
-        //  document.getElementById("buttonSave").disabled = true; // protect button from multyply button press
+          document.getElementById("buttonSave").disabled = true; // protect the button from being pressed several times
        }
 
     })

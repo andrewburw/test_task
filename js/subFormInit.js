@@ -8,7 +8,8 @@ function CreateTypeSwFields(param) {
   this.fieldId = param.fieldId;
   this.fieldName = param.fieldName;
   this.helpText = param.helpText;
-  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to check this field before form submit)
+  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" this field.
+                                    // ( in future to check this field for errors before form submit)
   this.crateField = function() {
 
     $("#typeSwitcherField").insertHTM('beforeend',`
@@ -21,17 +22,14 @@ function CreateTypeSwFields(param) {
                </div>`)
 
   };
-
-
-
-
-}
+};
 
 
 
 
 
 let formTypeChangePatterns = {
+    // form patterns
          default: function(){
            // if accedenly presed default in "Type Switcher"
            $('.type__switcher__field').show(); // show info panel "Please select Type Switcher to see more fields."
@@ -39,33 +37,47 @@ let formTypeChangePatterns = {
 
          },
          size: function(){
-          $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fiels if it selected before.
-           let sizeField = new  CreateTypeSwFields({fieldId: 'sizeFromField',fieldName:'Size',helpText:'Please provide DISC size, when type: Size is selected.'});
+          $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fields if it selected before.
+           let sizeField = new  CreateTypeSwFields({fieldId: 'sizeFromField',
+                                                    fieldName:'Size',
+                                                    helpText:'Please provide DISC size (MB), when type: Size is selected.'});
            sizeField.crateField();
            formValidation.emptyField(sizeField);
+           formValidation.valueNotMinus(sizeField,[1,4000]); // check for range
          },
          furniture: function(){
            $('#typeSwitcherField').removeAll();// delete all "Type Switcher" fiels if it selected before.
-           let heightField = new  CreateTypeSwFields({fieldId: 'heightFromField',fieldName:'Height',helpText:''});
+           let heightField = new  CreateTypeSwFields({fieldId: 'heightFromField',
+                                                      fieldName:'Height',
+                                                      helpText:''});
               heightField.crateField();
               formValidation.emptyField(heightField);
+              formValidation.valueNotMinus(heightField,[1,4000]);// check for range
 
 
-           let widthField = new  CreateTypeSwFields({fieldId: 'widthFromField',fieldName:'Width',helpText:''});
+           let widthField = new  CreateTypeSwFields({fieldId: 'widthFromField',
+                                                    fieldName:'Width',
+                                                    helpText:''});
               widthField.crateField();
               formValidation.emptyField(widthField);
+              formValidation.valueNotMinus(widthField,[1,4000]);// check for range
 
 
-           let lengthField = new  CreateTypeSwFields({fieldId: 'lengthFromField',fieldName:'Length',helpText:'Please provide demensions in HxWxL format, when type: Furniture is selected.'});
+           let lengthField = new  CreateTypeSwFields({fieldId: 'lengthFromField',
+                                                      fieldName:'Length',
+                                                      helpText:'Please provide demensions in HxWxL format, when type: Furniture is selected.'});
               lengthField.crateField();
               formValidation.emptyField(lengthField);
+              formValidation.valueNotMinus(lengthField,[1,4000]);// check for range
          },
          weight: function(){
           $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fiels if it selected before.
-           let weightField = new  CreateTypeSwFields({fieldId: 'weightFromField',fieldName:'Weight',helpText:'Please provide weight, when type: Weight is selected.'});
+           let weightField = new  CreateTypeSwFields({fieldId: 'weightFromField',
+                                                      fieldName:'Weight',
+                                                      helpText:'Please provide weight, when type: Weight is selected.'});
              weightField.crateField();
              formValidation.emptyField(weightField);
-
+             formValidation.valueNotMinus(weightField,[1,4000]);// check for range
          }
 
 
