@@ -90,15 +90,15 @@ let formTypeChangePatterns = {
 $('#typeChangeSelect').onChange(function(){
   // typeSwitcher select action function
   $('.type__switcher__field').hide();
-  $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (remove it)
+  $('#typeChangeSelect').removeClass('is-invalid'); // after submit added red border (if type switcher error) (remove it)
 
- errorHandler.sizeFromField = undefined; // this part needs if user change subForm multyply times
+ errorHandler.sizeFromField = undefined; // this part needs if user change subForm multiple times
  errorHandler.heightFromField = undefined;
  errorHandler.widthFromField = undefined;
  errorHandler.lengthFromField = undefined;
  errorHandler.weightFromField = undefined;
 
-   delete errorHandler.sizeFromField; // this part needs if user change subForm multyply times
+   delete errorHandler.sizeFromField; // this part needs if user change subForm multiple times
    delete errorHandler.heightFromField;
    delete errorHandler.widthFromField;
    delete errorHandler.lengthFromField;

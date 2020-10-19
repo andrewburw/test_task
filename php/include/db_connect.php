@@ -16,7 +16,7 @@ class Db  {
 
    }
 
-   public  $sqlErrors = array(
+   public  $sqlErrors = array( // error handler response
      1062 => 'Duplicate value!SKU field must be unique!'
    );
 
@@ -98,7 +98,7 @@ class Db  {
  }
 
    public function deleteData($data){
-
+    // -----  DELETE PRODUCTS ------
         $ids =  implode(",",$data);
 
       $sqlQuery = "DELETE from `products` WHERE `id` IN ($ids);";

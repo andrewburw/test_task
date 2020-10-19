@@ -2,7 +2,7 @@
   #############################################################
                      ERROR HANDLER
   ############################################################
-  This script is error/success box. (IF errors recived from server).
+  This script is error/success html box. (IF errors recived from server).
 */
 
 function CreateErroMSG(param) {

@@ -2,8 +2,7 @@
   #####################################################
                Validation Form Script.
   #####################################################
-  Idea is to take JQUERY concept and impliment my own framework for faster developing
-  and less code.
+
 
 */
 
@@ -12,7 +11,7 @@ function CreateMainFormFields(param) {
   this.fieldName = param.fieldName;
   this.fieldOptions = param.fieldOptions;
   this.fieldType = param.fieldType;
-  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to checkthis field before form submit)
+  errorHandler[this.fieldId] = true; // this line add to object "errorHandler" field.( in future to check this field before form submit)
   this.crateField = function() {
 
     $("#mainForm").insertHTM('beforeend',`

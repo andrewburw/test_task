@@ -3,7 +3,7 @@
           GET PRODUCTS DATA
   #####################################################
 
-     *This script GETs product data from server and renders it in to the page.
+     *This script GET product data from server and renders it in to the page.
 */
 
 fetch('php/showProducts.php', {

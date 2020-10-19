@@ -3,7 +3,7 @@
             Delete Products Script
   ############################################################
 
-  *This script for deleteing products.
+  *This script for deleting products.
 */
 
 let chekedCheckboxes = [];
@@ -54,7 +54,7 @@ function sendIdToDelete(data){
 
           setTimeout(()=>{ window.location.reload() }, 1000);
 
-          document.getElementById("buttonApply").disabled = true; // protect button from multyply button press
-      })
+          document.getElementById("buttonApply").disabled = true; // protect button from multiple button press
 
-    }
+    })
+  };

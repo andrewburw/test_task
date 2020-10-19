@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Product DB</title>
+</head>
+
+<body>
+  <div class="container main-container">
+    <header class="header">
+
+      <div class="">
+        <h1>Product List </h1>
+
+      </div>
+
+      <div>
+        <form class="form-inline">
+          <div class="form-group mx-sm-3">
+            <select id="deleteProduct" class="form-control form-control-sm">
+              <option value="all">Delete All Selected</option>
+              <option value="one">Delete Only One</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="button" id="buttonApply" onclick="deletePoduct()" class="btn btn-outline-secondary btn-sm">Apply</button>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <hr />
+    <!-- ############## MAIN CONTENT ###################### -->
+
+    <div class="main container-fluid">
+
+      </div>
+    </div>
+  </div>
+
+  <!--  JavaScript -->
+      <script src="js/ablib.js"></script>
+     <script src="js/getProductData.js"></script>
+    <script src="js/deleteProduct.js"></script>
+</body>
+
+</html>

@@ -50,14 +50,14 @@ let formValidation = {
    },
    submitErrorsChecker: function() {
 
-       // this test for submit button
+       // this test for submit button/form
      let found = Object.keys(errorHandler).filter(function(key) {
        return errorHandler[key] === true;
      });
 
 
        found.forEach(function(currentValue) {
-          // this crutch add error to empty fields. sorry for that :)
+          // this crutch add error to empty fields.  :)
          $('#' + currentValue).removeClass('is-valid');
          $('#' + currentValue).addClass('is-invalid');
          $('#' + currentValue + 'ValidFeed').removeElement();
@@ -117,7 +117,7 @@ event.preventDefault()
 
   let allFormFieldID = Object.keys(errorHandler); // get all fields IDS
   let result = {};                               // data to send.
-   allFormFieldID.forEach(function(value) { // collecting all key -> value pairs with data to send.
+   allFormFieldID.forEach(function(value) { // collecting all key -> value pairs for data sending.
 
      result[$('#' + value).name()] = $('#' + value).val();
    });
