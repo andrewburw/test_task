@@ -1,78 +1,52 @@
 <?php
-require_once 'include/config.php';
-require_once 'include/db_connect.php';
+class ProductProperties
+{
+    private $properties = array();
 
-
- header('Content-Type: application/json');
-
-class MainFormData {
-    private $sku;
-    private $name;
-    private $price;
-
-    function decoder(){
-      $content = trim(file_get_contents("php://input"));
-       return $decoded = json_decode($content, true);
-
-
+    public function getProperties()
+    {
+        return $this->properties;
     }
 
-
-    function __construct() {
-        $data =  $this-> decoder();
-
-        $this->sku = $data['sku'];
-        $this->name = $data['name'];
-        $this->price = $data['price'];
-
-
+    public function addProperty($id, $value)
+    {
+        $this->properties[$id] = $value;
     }
 
-  public function getValues() {
-      return  get_object_vars($this);
+    public function getProperty($id)
+    {
+        return $this->properties[$id];
     }
 }
 
-class SubFormData {
-    private $size;
-    private $height;
-    private $width;
-    private $length;
-    private $weight;
+abstract class Product
+{
+    private $properties;
 
+    //more methods
 
-    function decoder(){
-      $content = trim(file_get_contents("php://input"));
-       return $decoded = json_decode($content, true);
-
+    public function __construct(ProductProperties $properties)
+    {
+        $this->properties = $properties;
 
     }
 
+    public function getData(){
 
-    function __construct() {
-        $data =  $this-> decoder();
-
-        $this->size = isset($data['size']) ? $data['size'] : null;
-        $this->height = isset($data['height']) ? $data['height'] : null;
-        $this->width =  isset($data['width']) ? $data['width']: null;
-        $this->length = isset($data['length']) ? $data['length']: null;
-        $this->weight = isset($data['weight']) ? $data['weight']: null;
-
+      return $this->properties->getProperties();
     }
 
-  public function getValues() {
-      return  get_object_vars($this);
-    }
+}
+class Run extends Product{
+
+
 }
 
-$db = new Db($config['db']['server'], $config['db']['username'],  $config['db']['password'], $config['db']['dbname']);
-
-$addNewProduct = new MainFormData();
-$addNewProduct_subForm = new SubFormData();
 
 
-$recivedData =  $addNewProduct->getValues();
-$recivedData_subForm =  $addNewProduct_subForm->getValues();
+$test1 = new ProductProperties();
+$test1->addProperty('test', 'tsdft');
+$test = new Run($test1 );
 
-
-$db->postData($recivedData,$recivedData_subForm );
+//echo ProductProperties::$properties;
+print_r($test->getData());
