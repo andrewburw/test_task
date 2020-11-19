@@ -105,7 +105,7 @@ let formValidation = {
      }
 
 }
-
+//***************************************** DATA SEND ****************************
 $('#buttonSave').onClick(function(event){
 
   // SAVE button pressed.
@@ -120,6 +120,7 @@ event.preventDefault()
    allFormFieldID.forEach(function(value) { // collecting all key -> value pairs for data sending.
 
      result[$('#' + value).name()] = $('#' + value).val();
+     result['productType'] =  $('#typeChangeSelect').val().capitalize();
    });
 
 //-----------------------------------------------------
@@ -133,16 +134,16 @@ event.preventDefault()
     }).then((response) => response.json())
     .then((data) => {
         $('#fromResultMsg').removeAll();
-
+console.log(data)
        if (data.status === 'error') {
          let msge =  new CreateErroMSG({msg: data.error});
           msge.crateErrorMsg();
        } else {
          let msge =  new CreateErroMSG({msg: 'Data Sended.Page reloading...'});
           msge.crateSuccessMsg();
-          setTimeout(function(){ window.location.reload() }, 1000);
+        //  setTimeout(function(){ window.location.reload() }, 1000);
 
-          document.getElementById("buttonSave").disabled = true; // protect the button from being pressed several times
+    //      document.getElementById("buttonSave").disabled = true; // protect the button from being pressed several times
        }
 
     })

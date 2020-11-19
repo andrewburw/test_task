@@ -105,5 +105,5 @@ let priceField = new CreateMainFormFields({fieldId: 'priceFormField',
 
 let typeChangeField = new CreateMainFormFields({fieldId: 'typeChangeSelect',
                                                 fieldName:'Type Switcher',
-                                                fieldOptions: ['Size','Furniture','Weight']});
+                                                fieldOptions: ['Disc','Furniture','Weight']});
     typeChangeField.crateOptionField();

@@ -21,24 +21,23 @@ class Db  {
    );
 
 
-   public function postData($formData,$subFormData){
-      // ----- TABLE VALUES ------
-      // $filterNullValues = delete all null fields
-      $filterNullValues = array_filter($subFormData, function($value) { return !is_null($value) && $value !== ''; });
+   public function postData($formData){
+      // ----- POST DATA TO TABLE ------
 
-      $imploded_form = implode("','",$formData);
-      $imploded_subForm = implode("','",   $filterNullValues);
+      $tableColums = implode(",", array_keys(get_object_vars($formData)));
+      $formValues  = array_values(get_object_vars($formData));
+      $generateArray = array_fill(0, count($formValues), '?');
+      $insertParametrsString = implode(',',$generateArray);
+      $bindParamTypes = str_repeat("s",count($formValues));
 
-     // ----- TABLE COLUMNS ------
-      $tableColums = implode(",", array_keys($formData));
-      $subTableColums = implode(",", array_keys(  $filterNullValues));
+      $sqlString = "INSERT INTO products ($tableColums) VAlUES ($insertParametrsString)";
+      $test = $this->connection->prepare($sqlString);
+      $test->bind_param($bindParamTypes, ...$formValues);
+    //  if(!$test->execute()){
+    //      echo mysqli_error( $this->connection);
+    //  }
 
-
-
-     $sqlQuery = "INSERT INTO products ($tableColums , $subTableColums) VALUES ('$imploded_form',' $imploded_subForm');";
-
-
-      if ($this->connection->query($sqlQuery) === TRUE) {
+      if ($test->execute()) {
 
          echo  json_encode( array("status" => 'OK'));
 

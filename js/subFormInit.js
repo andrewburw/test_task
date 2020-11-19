@@ -36,7 +36,7 @@ let formTypeChangePatterns = {
            $('#typeSwitcherField').removeAll(); // delete all Type fiels.
 
          },
-         size: function(){
+         disc: function(){
           $('#typeSwitcherField').removeAll(); // delete all "Type Switcher" fields if it selected before.
            let sizeField = new  CreateTypeSwFields({fieldId: 'sizeFromField',
                                                     fieldName:'Size',
