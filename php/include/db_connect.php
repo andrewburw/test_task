@@ -58,7 +58,7 @@ class Db  {
 
   }
 
-  public function showData(){
+  public function getData(){
      // -----  SHOW PRODUCTS ------
 
 
@@ -69,13 +69,8 @@ class Db  {
 
 
      if ( $result) {
-       $resultArr = array();
 
-      while ($row = $result -> fetch_assoc()) {
-          $resultArr[] = $row;
-      }
-        return json_encode($resultArr);
-
+        return $result;
 
      } else {
 

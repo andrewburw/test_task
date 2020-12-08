@@ -81,7 +81,7 @@ class getFormData extends ProductBaseClass{}   // access to decoder Abstract cla
   $formData = new getFormData(null,null,null,null); // access to decoder Abstract class method
   $formSelected =  $formData->decoder();       // access to decoder Abstract class method
 
- $db = new Db($config['db']['server'], $config['db']['username'],  $config['db']['password'], $config['db']['dbname']);
+  $db = new Db($config['db']['server'], $config['db']['username'],  $config['db']['password'], $config['db']['dbname']);
 
 class Controller {
    private $data;
@@ -97,12 +97,11 @@ class Controller {
    public function postDataToDb(){
      //print_r($this->data);
 
-    global  $db;
-     $db->postData($this->data);
+     global  $db;
+       $db->postData($this->data);
 
    }
    public function getValues() {
-
       return json_encode($this->data);
    }
 
