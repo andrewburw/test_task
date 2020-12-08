@@ -6,6 +6,7 @@ Hi Code Checker!
 
 I Used : Open Server "Basic".
 DB     : One table with all data. // SKU field unique.
+DB dump: dbproduct.sql
 
 I'm not using JQUERY library.
 

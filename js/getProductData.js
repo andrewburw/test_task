@@ -14,7 +14,7 @@ fetch('php/showProducts.php', {
 
   }).then((response) => response.json())
   .then((data) => {
-
+ console.log(data)
  let iId = 0;
     Array.from(data).map((item, i) => {
 
@@ -28,19 +28,7 @@ fetch('php/showProducts.php', {
 
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="${item['id']}" onchange="checkChebox(this)" >
-              </div>
-              <br />
-              <div class="text-center">
-                <p class="h5">${item['sku']}</p>
-                <p class="h5">${item['name']}</p>
-                <p class="h5">${item['price']} $</p>
-               ${item['size'] !== null ?   '<p class="h5"> Size: ' + item['size'] + ' MB</p>': ''  }
-               ${item['weight'] !== null ? '<p class="h5"> Weight: ' + item['weight'] + ' KG</p>': ''  }
-               ${item['height'] !== null ? '<p class="h5"> Dimension: ' + item['height'] + 'x' + item['width'] + 'x' + item['length']+ '</p>': ''  }
-
-              </div>
+                  ${item}
             </div>
           </div>`)
 
